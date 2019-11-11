@@ -24,9 +24,10 @@ class IP:
 		UDP = 17
 
 		def __init__(self, bytes_brutos):
-			self.versao = bytes_brutos[0] >> 4
-			self.tam_cabecalho = (bytes_brutos[0] & 15) * 4
-			self.ttl, self.protocolo, self.orig_bruto, self.dest_bruto = struct.unpack('! 8x B B 2x 4s 4s', bytes_brutos[:20])
+			self.bytes_brutos = bytes_brutos
+			self.versao = self.bytes_brutos[0] >> 4
+			self.tam_cabecalho = (self.bytes_brutos[0] & 15) * 4
+			self.ttl, self.protocolo, self.orig_bruto, self.dest_bruto = struct.unpack('! 8x B B 2x 4s 4s', self.bytes_brutos[:20])
 			self.orig = self.stringfy_endr(self.orig_bruto)
 			self.dest = self.stringfy_endr(self.dest_bruto)
 			self.dados = bytes_brutos[self.tam_cabecalho:]

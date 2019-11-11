@@ -54,3 +54,12 @@ class Ethernet:
 			self.orig = orig
 			self.type = type
 			self.data = data
+
+		def change_orig(self, new_ip):
+			print(self.data)
+			new_ip = new_ip.split('.')
+			new_ip = hex(int(new_ip[0])) + hex(int(new_ip[1])) + hex(int(new_ip[2])) + hex(int(new_ip[3]))
+			new_ip = str.encode(new_ip)
+			new_ip = self.data[:12] + new_ip + self.data[16:]
+			self.data = new_ip
+			print(self.data)

@@ -2,7 +2,7 @@ from camada_enlace import Ethernet
 from camada_rede import IP
 from camada_transporte import Transporte
 #Classe que representa a transformação dos dados em linhas legíveis no teminal
-class FiltroInstagram:
+class Filtro:
 
 	def __init__(self, quadro_ethernet):
 		self.quadro = quadro_ethernet
