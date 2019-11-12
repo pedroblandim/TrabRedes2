@@ -44,7 +44,7 @@ class Ethernet:
 		return ':'.join(str_endr).upper()
 
 	#Classe que representa um quadro Ethernet (da camada de enlace)
-	#Ver 349 do KUrose para saber como montar um pacote Ethernet. (para o spoofing)
+	#Ver 349 do Kuhex(rose para saber como montar um pacote Ethernet. (para o spoofing)
 	class Quadro:
 
 		IPv4_TYPE = 8
@@ -56,10 +56,9 @@ class Ethernet:
 			self.data = data
 
 		def change_orig(self, new_ip):
-			print(self.data)
+			#print(self.data)
 			new_ip = new_ip.split('.')
-			new_ip = hex(int(new_ip[0])) + hex(int(new_ip[1])) + hex(int(new_ip[2])) + hex(int(new_ip[3]))
-			new_ip = str.encode(new_ip)
+			new_ip = bytes([int(new_ip[0])]) + bytes([int(new_ip[1])]) + bytes([int(new_ip[2])]) + bytes([int(new_ip[3])])
 			new_ip = self.data[:12] + new_ip + self.data[16:]
 			self.data = new_ip
-			print(self.data)
+			#print(self.data)
